@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ExpenseRecord {
+  id: ID!
+  date: DateTime!
+  name: String!
+  category: String!
+  amount: Int!
+  notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  expenseRecords: [ExpenseRecord!]!
+  expenseRecord(id: String!): ExpenseRecord!
+}
+
+type Mutation {
+  createExpenseRecord(createExpenseRecordInput: CreateExpenseRecordInput!): ExpenseRecord!
+  updateExpenseRecord(updateExpenseRecordInput: UpdateExpenseRecordInput!): ExpenseRecord!
+  removeExpenseRecord(id: Int!): ExpenseRecord!
+}
+
+input CreateExpenseRecordInput {
+  date: DateTime!
+  name: String!
+  category: String!
+  amount: Int!
+  notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
+}
+
+input UpdateExpenseRecordInput {
+  date: DateTime!
+  name: String!
+  category: String!
+  amount: Int!
+  notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
+  id: ID!
+}

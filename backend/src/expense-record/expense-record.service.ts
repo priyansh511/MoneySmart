@@ -15,18 +15,18 @@ export class ExpenseRecordService extends BaseRecordService<ExpenseRecord> {
   ) {
     super(expenseRepository);
   }
-  create(createExpenseRecordInput: CreateExpenseRecordInput) {
+  async create(createExpenseRecordInput: CreateExpenseRecordInput) {
     const newExpenseRecord = new ExpenseRecord();
     Object.assign(newExpenseRecord, createExpenseRecordInput);
     newExpenseRecord.id = uuidv4();
     newExpenseRecord.date = new Date(createExpenseRecordInput.date);
-    return this.expenseRepository.save(newExpenseRecord);
+    return await this.expenseRepository.save(newExpenseRecord);
   }
 
   async update(id: string, updateExpenseRecordInput: UpdateExpenseRecordInput) : Promise<ExpenseRecord> {
     const entity = await this.expenseRepository.findOneOrFail({ where: { id }});
     const updatedRecord = Object.assign(entity, updateExpenseRecordInput) as ExpenseRecord;
-    this.expenseRepository.save(updatedRecord);
+    await this.expenseRepository.save(updatedRecord);
     return updatedRecord;
   }
 }

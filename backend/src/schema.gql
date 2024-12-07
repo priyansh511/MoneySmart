@@ -5,9 +5,13 @@
 type ExpenseRecord {
   id: ID!
   date: DateTime!
+  name: String!
   category: String!
   amount: Int!
   notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
 }
 
 """
@@ -28,15 +32,23 @@ type Mutation {
 
 input CreateExpenseRecordInput {
   date: DateTime!
+  name: String!
   category: String!
   amount: Int!
   notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
 }
 
 input UpdateExpenseRecordInput {
   date: DateTime!
+  name: String!
   category: String!
   amount: Int!
   notes: String!
+  platform: String
+  mode_of_pay: String
+  payment_service: String
   id: ID!
 }

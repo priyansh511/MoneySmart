@@ -6,6 +6,9 @@ export class CreateExpenseRecordInput {
   @Field(()=> Date)
   date : Date
 
+  @Field(() => String)
+  name : string
+
 
   @Field(() => String)
   category : string
@@ -17,4 +20,17 @@ export class CreateExpenseRecordInput {
 
   @Field(() => String)
   notes : string
+
+
+  @Field(() => String, { nullable: true })
+  platform?: string;
+
+  
+  @Field(() => String, { nullable: true })
+  mode_of_pay?: string;
+
+
+  @Field(() => String, { nullable: true })
+  payment_service?: string;
+
 }

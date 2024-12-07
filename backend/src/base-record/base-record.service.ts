@@ -11,21 +11,23 @@ export class BaseRecordService<T extends BaseRecord>{
     ) { }
 
     async findAll(): Promise<T[]> {
-        return this.repository.find();
+        return await this.repository.find();
     }
 
     async findById(id: string): Promise<T> {
-        return await this.repository.findOneOrFail({ where: { id } as FindOptionsWhere<T> });
-    }
-
+        const result = await this.repository.findOneBy({id} as FindOptionsWhere<T> );
+        if(!result) {
+            //TODO:throw exception
+        }
+        //not handling result count>0 as it will be handled by primary key constraint
+        return result;
+      }
 
     async delete(id: number): Promise<void> {
         await this.repository.delete(id);
     }
 
     async findByCategory(category: string): Promise<T[]> {
-        return this.repository.find({ where: { category } as FindOptionsWhere<T> });
+        return await this.repository.find({ where: { category } as FindOptionsWhere<T> });
     }
-
-
 }
